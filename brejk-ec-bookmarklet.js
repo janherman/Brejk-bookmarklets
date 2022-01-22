@@ -3,18 +3,21 @@
 
   if (parametrStranky && parametrStranky == "tym_kadr") {
     const kontejner = document.querySelector(".content-data");
+    let potvrzeni = document.createElement("p");
     // Pokud je sehranost na desetinné místo, parseInt to pravděpodobně zaokrouhlí, resp. na desetinné místo nebere ohled. Opravit?
-    let sehranost = parseInt(document.querySelector("#div_sehranost td:nth-child(2)").textContent.slice(10, -2));
-    let sehranostBonusKoeficient = (((40 * sehranost) / 100) / 100) + 1;
-    let ovladaciPanel = document.createElement("div");
-    let toggle = document.createElement("input");
-    let toggleLabel = document.createElement("label");
-    let prepsatBunky = function() {
-      let radky = document.querySelectorAll(
-        "[id^='div_kategorie_id'] > table > tbody > tr"
-      );
+    let sehranost, sehranostBonusKoeficient;
+
+    let spocitatSehranost = function() {
       sehranost = parseInt(document.querySelector("#div_sehranost td:nth-child(2)").textContent.slice(10, -2));
       sehranostBonusKoeficient = (((40 * sehranost) / 100) / 100) + 1;
+    };
+    
+    let prepsatBunky = function() {
+      let radky = document.querySelectorAll(
+        "[id^=div_kategorie_id] > table > tbody > tr"
+      );
+
+      spocitatSehranost();
       
       radky.forEach(function(r) {
         let nominovany = r.classList.contains("bgcolor-orange");
@@ -29,52 +32,35 @@
             );
           }
 
-          if (toggle.checked == true) {
-            let nalepka = document.createElement("span");
-            nalepka.style.position = "absolute";
-            nalepka.style.left = "0";
-            nalepka.style.width = "100%";
-            nalepka.style.textAlign = "right";
-            nalepka.style.color = "#000";
+          let nalepka = document.createElement("span");
+          nalepka.style.position = "absolute";
+          nalepka.style.left = "0";
+          nalepka.style.width = "100%";
+          nalepka.style.textAlign = "right";
+          nalepka.style.color = "#000";
 
-            if(nominovany) {
-              nalepka.innerHTML = Math.round(
-                parseInt(atributy[index].innerHTML) * ec * sehranostBonusKoeficient
-              );
-            } else {
-              nalepka.innerHTML = Math.round(
-                parseInt(atributy[index].innerHTML) * ec
-              );
-            }
-
-
-            atributy[index].style.position = "relative";
-            atributy[index].style.color = "transparent";
-            atributy[index].appendChild(nalepka);
+          if(nominovany) {
+            nalepka.innerHTML = Math.round(
+              parseInt(atributy[index].innerHTML) * ec * sehranostBonusKoeficient
+            );
           } else {
-            atributy[index].style.color = "#000";
-            if (atributy[index].querySelector("span")) {
-              atributy[index].removeChild(
-                atributy[index].querySelector("span")
-              );
-            }
+            nalepka.innerHTML = Math.round(
+              parseInt(atributy[index].innerHTML) * ec
+            );
           }
+
+          atributy[index].style.position = "relative";
+          atributy[index].style.color = "transparent";
+          atributy[index].appendChild(nalepka);
         }
       });
     };
 
-    toggle.type = "checkbox";
-    toggle.id = "zapnout-ec-zobrazeni";
-    toggleLabel.innerHTML = "Zobrazit atributy dle aktuální Ec a sehranosti";
-    toggleLabel.setAttribute("for", "zapnout-ec-zobrazeni");
-    toggleLabel.style.marginRight = "1rem";
-    ovladaciPanel.style.padding = "1rem";
-    ovladaciPanel.style.backgroundColor = "lightgrey";
-    ovladaciPanel.style.marginBottom = ".5rem";
-    ovladaciPanel.appendChild(toggleLabel);
-    ovladaciPanel.appendChild(toggle);
+    potvrzeni.style.textAlign = "left";
+    potvrzeni.style.marginBottom = "1rem";
+    potvrzeni.innerHTML = "✔️ Hodnota skillů upravená podle aktuální EC, u základní jedenáctky zohledněna také sehranost.";
 
-    kontejner.prepend(ovladaciPanel);
+    kontejner.prepend(potvrzeni);
 
     kontejner.addEventListener("change", function(e) {
       if(e.target.getAttribute("type") == "checkbox" || e.target.getAttribute("type") == "select") {
@@ -83,6 +69,8 @@
         }, 500);
       }
     });
+
+    prepsatBunky();
 
   }
 })();

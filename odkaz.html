@@ -1,14 +1,29 @@
 <style>
     *{box-sizing: border-box; max-width: 70ch}
     div {max-width: none;}
-    .telo {padding: 1rem; margin-bottom: 5rem;}
+    a {color: darkblue}
+    h1 {font-size: 1.8rem; line-height: 1.25;}
+    h2 {font-size: 1.4rem; line-height: 1.25;}
+    .telo {padding: 1rem 2rem; margin-bottom: 5rem; font-size: .9rem; font-family: Arial, sans-serif; line-height: 1.5;}
 </style>
-<div class="telo">
-    <h1>Brejk bookmarklet</h1>
-    <p>Co je to bookmarklet? Já jsem se k tomuto termínu dostal paradoxně teprve nedávno, ve skutečnosti se však jedná o koncept starý zhruba 20 let. Zjednodušeně řečeno je bookmarklet kousek javascriptového kódu uložený v záložce v prohlížeči. Kliknutím na záložku tento kód spustíte.</p>
-    <p>Napadlo mě, že si s myšlenkou bookmarklets trochu pohraji a zkusím vytvořit něco na Brejk. Přemýšlel jsem, že by bylo fajn nechat si v kádru zobrazit reálnou výši skillů hráčů. A zkusit zohlednit i sehranost. A tak jsem to zkusil.</p>
+<div class='telo'>
+    <h1>Bookmarklet pro Brejk, aneb skutečné skilly v kádru</h1>
+    <h2>Co je bookmarklet? </h2>
+    <p>Já jsem se k tomuto termínu dostal paradoxně teprve nedávno, ve skutečnosti se jedná o koncept starý zhruba 20 let. Bookmarklet je kousek javascriptového kódu uložený v záložce v prohlížeči. Kliknutím na záložku kód spustíte. Tak jednoduché to je.</p>
+    <p>Abych nově nabytý poznatek nějak využil v praxi, zkusil jsem vytvořit malý nástoj pro Brejk.</p>
+    <h2>Co umí tento bookmarklet?</h2>
+    <p>Uvažoval jsem, že se občas hodí znát skutečnou výši skillů daného hráče s ohledem na jeho Ec a sehranost. Jakousi nápovědu sice poskytuje karta hráče, kde je úbytek znázorněný graficky, ale v kádru je to přeci jen přehlednější. A tak jsem dal dohromady kód, který přepíše hodnotu skillů. Všem hráčům sníží skilly na základě Ec a nominované jedenáctce ještě připíše bonus za sehranost.</p>
+    <h2>Jak bookmarklet použít?</h2>
+    <p>Jednoduše si následující odkaz uložte do záložek:</p>
     <p>
-        <a href="javascript:(function(){const e=new URLSearchParams(window.location.search).get('p');if(e&&'tym_kadr'==e){const e=document.querySelector('.content-data');let t=parseInt(document.querySelector('#div_sehranost td:nth-child(2)').textContent.slice(10,-2)),n=40*t/100/100+1,r=document.createElement('div'),o=document.createElement('input'),l=document.createElement('label'),a=function(){let e=document.querySelectorAll('[id^='div_kategorie_id'] > table > tbody > tr');t=parseInt(document.querySelector('#div_sehranost td:nth-child(2)').textContent.slice(10,-2)),n=40*t/100/100+1,e.forEach((function(e){let t=e.classList.contains('bgcolor-orange'),r=parseInt(e.querySelector('td:nth-child(22)').innerHTML)/100,l=e.querySelectorAll('td');for(let e=3;e<12;e++)if(l[e].querySelector('span')&&l[e].removeChild(l[e].querySelector('span')),1==o.checked){let o=document.createElement('span');o.style.position='absolute',o.style.left='0',o.style.width='100%',o.style.textAlign='right',o.style.color='#000',o.innerHTML=t?Math.round(parseInt(l[e].innerHTML)*r*n):Math.round(parseInt(l[e].innerHTML)*r),l[e].style.position='relative',l[e].style.color='transparent',l[e].appendChild(o)}else l[e].style.color='#000',l[e].querySelector('span')&&l[e].removeChild(l[e].querySelector('span'))}))};o.type='checkbox',o.id='zapnout-ec-zobrazeni',l.innerHTML='Zobrazit atributy dle aktuální Ec a sehranosti',l.setAttribute('for','zapnout-ec-zobrazeni'),l.style.marginRight='1rem',r.style.padding='1rem',r.style.backgroundColor='lightgrey',r.style.marginBottom='.5rem',r.appendChild(l),r.appendChild(o),e.prepend(r),e.addEventListener('change',(function(e){'checkbox'!=e.target.getAttribute('type')&&'select'!=e.target.getAttribute('type')||setInterval((function(){a()}),500)}))}})()">Brejk - reálné atributy</a>
+        <a href="javascript:(function(){const e=new URLSearchParams(window.location.search).get('p');if(e&&'tym_kadr'==e){const e=document.querySelector('.content-data');let t,n,r=document.createElement('p'),o=function(){t=parseInt(document.querySelector('#div_sehranost td:nth-child(2)').textContent.slice(10,-2)),n=40*t/100/100+1},l=function(){let e=document.querySelectorAll('[id^=div_kategorie_id] > table > tbody > tr');o(),e.forEach((function(e){let t=e.classList.contains('bgcolor-orange'),r=parseInt(e.querySelector('td:nth-child(22)').innerHTML)/100,o=e.querySelectorAll('td');for(let e=3;e<12;e++){o[e].querySelector('span')&&o[e].removeChild(o[e].querySelector('span'));let l=document.createElement('span');l.style.position='absolute',l.style.left='0',l.style.width='100%',l.style.textAlign='right',l.style.color='#000',l.innerHTML=t?Math.round(parseInt(o[e].innerHTML)*r*n):Math.round(parseInt(o[e].innerHTML)*r),o[e].style.position='relative',o[e].style.color='transparent',o[e].appendChild(l)}}))};r.style.textAlign='left',r.style.marginBottom='1rem',r.innerHTML='✔️ Hodnota skillů upravená podle aktuální EC, u základní jedenáctky zohledněna také sehranost.',e.prepend(r),e.addEventListener('change',(function(e){'checkbox'!=e.target.getAttribute('type')&&'select'!=e.target.getAttribute('type')||setInterval((function(){l()}),500)})),l()}})()">Kádr - upravené skilly</a>
     </p>
-    <p>Nejedná se o extra optimalizovaný kód. V podstatě prošel jen minifikací. </p>
+    <p>Pak už stačí jen přejít do kádru (na jiných obrazovkách zatím bookmarklet fungovat nebude) a kliknout na uloženou záložku. Že přepočet skillů proběhl poznáte podle potvrzení, které vyskočí pod nadpisem "Můj tým - kádr".</p>
+    <h2>Jaké má bookmarklet limity?</h2>
+    <p>Jedná se opravdu o malý jednorázový nástroj. Refresh stránky bookmarklet smaže. Když odejdete z kádru a vrátíte se, bookmarklet se smaže.</p>
+    <p>Testoval jsem na počítači v prohlížečích Chrome a Firefox. Mobilním verzím těchto prohlížečů se podle všeho bookmarklet spustit nechce.</p>
+    <h2>Slovo závěrem</h2>
+    <p>Upřímně řečeno nejsem žádný javascriptový vývojář. Nepochybně lze bookmarklet napsat lépe. A určitě lze provést důkladnější testování, než jsem provedl já. Ale vymýšlení této "blbůstky" byla prostě zábava, i kdybych jí nakonec občas využil jen já sám. Pokud bude užitečná někomu dalšímu, jedině dobře. :-)</p>
+    <hr>
+    <p>Chyby ve výpočtech (je možné, že jsem se někde seknul ve vzorečku) nebo ve funkčnosti prosím klidně hlašte.</p>
 </div>
