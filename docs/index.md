@@ -35,9 +35,21 @@ Pro Edge platí podobný postup, jako pro Chrome. Také musíte odkaz nejprve zk
 3. pod nadpisem "Můj tým - Kádr" by měla přibýt věta: ✔️ Hodnota skillů upravená podle aktuální EC, u základní jedenáctky zohledněna také sehranost.
 4. skilly všech hráčů by nyní měly být přepočítané podle Ec, u základní jedenáctky ještě podle sehranosti
 
+## Jak to funguje
+
+Je to jednorázový nástroj. Kliknu na záložku, přepočítají se skilly.
+
+Pokud stránku aktualizujete, přepočet se smaže a opět uvidíte "klasický" kádr. Stejně tak pokud například z kádru přejdete na trénink a zase zpátky. V takovém případě musíte na záložku kliknout znovu.
+
+Vodítkem, zda je nástoj aktivní, je věta pod hlavním nadpisem, která zní: ✔️ Hodnota skillů upravená podle aktuální EC, u základní jedenáctky zohledněna také sehranost.
+
+## Co když to nefunguje?
+
+Pokud jste úspěšně uložili odkaz z kapitoly "Instalace" do záložek, jste na obrazovce kádr, kliknuli jste na uloženou záložku - a nic se nestalo, dejte prosím vědět.
+
 ## Příklad
 
-Mám hráče Sergio Cuarto. Sezónu teď díky věku začíná s Ec 95. V kádru tedy normálně vidím toto:
+Mám hráče Sergio Cuarto. Sezónu teď díky věku začíná s Ec 95. V kádru normálně vidím toto:
 
 ![Hráč normálně](hrac-pred.png)
 
