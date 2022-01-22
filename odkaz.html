@@ -1,0 +1,14 @@
+<style>
+    *{box-sizing: border-box; max-width: 70ch}
+    div {max-width: none;}
+    .telo {padding: 1rem; margin-bottom: 5rem;}
+</style>
+<div class="telo">
+    <h1>Brejk bookmarklet</h1>
+    <p>Co je to bookmarklet? Já jsem se k tomuto termínu dostal paradoxně teprve nedávno, ve skutečnosti se však jedná o koncept starý zhruba 20 let. Zjednodušeně řečeno je bookmarklet kousek javascriptového kódu uložený v záložce v prohlížeči. Kliknutím na záložku tento kód spustíte.</p>
+    <p>Napadlo mě, že si s myšlenkou bookmarklets trochu pohraji a zkusím vytvořit něco na Brejk. Přemýšlel jsem, že by bylo fajn nechat si v kádru zobrazit reálnou výši skillů hráčů. A zkusit zohlednit i sehranost. A tak jsem to zkusil.</p>
+    <p>
+        <a href="javascript:(function(){const e=new URLSearchParams(window.location.search).get('p');if(e&&'tym_kadr'==e){const e=document.querySelector('.content-data');let t=parseInt(document.querySelector('#div_sehranost td:nth-child(2)').textContent.slice(10,-2)),n=40*t/100/100+1,r=document.createElement('div'),o=document.createElement('input'),l=document.createElement('label'),a=function(){let e=document.querySelectorAll('[id^='div_kategorie_id'] > table > tbody > tr');t=parseInt(document.querySelector('#div_sehranost td:nth-child(2)').textContent.slice(10,-2)),n=40*t/100/100+1,e.forEach((function(e){let t=e.classList.contains('bgcolor-orange'),r=parseInt(e.querySelector('td:nth-child(22)').innerHTML)/100,l=e.querySelectorAll('td');for(let e=3;e<12;e++)if(l[e].querySelector('span')&&l[e].removeChild(l[e].querySelector('span')),1==o.checked){let o=document.createElement('span');o.style.position='absolute',o.style.left='0',o.style.width='100%',o.style.textAlign='right',o.style.color='#000',o.innerHTML=t?Math.round(parseInt(l[e].innerHTML)*r*n):Math.round(parseInt(l[e].innerHTML)*r),l[e].style.position='relative',l[e].style.color='transparent',l[e].appendChild(o)}else l[e].style.color='#000',l[e].querySelector('span')&&l[e].removeChild(l[e].querySelector('span'))}))};o.type='checkbox',o.id='zapnout-ec-zobrazeni',l.innerHTML='Zobrazit atributy dle aktuální Ec a sehranosti',l.setAttribute('for','zapnout-ec-zobrazeni'),l.style.marginRight='1rem',r.style.padding='1rem',r.style.backgroundColor='lightgrey',r.style.marginBottom='.5rem',r.appendChild(l),r.appendChild(o),e.prepend(r),e.addEventListener('change',(function(e){'checkbox'!=e.target.getAttribute('type')&&'select'!=e.target.getAttribute('type')||setInterval((function(){a()}),500)}))}})()">Brejk - reálné atributy</a>
+    </p>
+    <p>Nejedná se o extra optimalizovaný kód. V podstatě prošel jen minifikací. </p>
+</div>
