@@ -1,13 +1,13 @@
 
 ## Co to je
 
-Jedná se o tzv. bookmarklet. Bookmarklet je javascriptový kód, který se uloží jako záložka v prohlížeči. Zatímco standardní záložka obsahuje nějaký odkaz na webovou stránku, záložka s bookmarkletem obsahuje instrukce, které se mají po kliknutí vykonat. 
+Jedná se o tzv. bookmarklet. Bookmarklet je javascriptový kód, který se uloží jako záložka v prohlížeči. Zatímco standardní záložka obsahuje nějaký odkaz na webovou stránku, záložka s bookmarkletem obsahuje instrukce, které se mají po kliknutí vykonat.
 
 ## Co je cílem tohoto nástroje
 
-V kádru, kde jsou vypsaní všichni hráči, vypočítat a zobrazit "správnou" hodnotu skillů dle aktuální Ec a sehranosti.
+V kádru, kde jsou vypsaní všichni hráči, vypočítat a zobrazit "správnou" hodnotu skillů dle aktuální Ec a sehranosti (pokud hledáte variantu, která sehranost vynechává, najdete jí na konci stránky).
 
-Je to věc, kterou ze začátku sezóny pravda člověk moc neužije. Zato v pokročilejší fázi ročníku se může hodit porovnat si, jak na tom hráči skutečně jsou (a nebo možná ne a je to celé jen můj výmysl... :-D).
+Je to věc, kterou ze začátku sezóny pravda člověk moc neužije. Zato v pokročilejší fázi ročníku se může hodit porovnat si, jak na tom hráči skutečně jsou.
 
 ## Instalace
 
@@ -71,7 +71,11 @@ Teď kliknu na uloženou záložku s mým nástrojem. Sergio Cuarto má Ec 95, �
 
 A tento přepočet je proveden pro všechny atributy s výjimkou doplňkových, na které nemá Ec vliv.
 
-## Další bookmarklety...
+## Další bookmarklety
+### Hodnota skillů dle aktuální EC (bez započítání sehranosti)
+Níže uvedený bookmarklet přepočítá skilly podle EC, ale vynechává bonus za sehranost pro nominované hráče.
+
+<a href="javascript:(function(){const e=new URLSearchParams(window.location.search).get('p');if(e&&'tym_kadr'==e){const e=document.querySelector('.content-data');let t=document.createElement('p'),n=function(){document.querySelectorAll('[id^=div_kategorie_id] > table > tbody > tr').forEach((function(e){let t=parseInt(e.querySelector('td:nth-child(22)').innerHTML)/100,n=e.querySelectorAll('td');for(let e=3;e<12;e++){n[e].querySelector('span')&&n[e].removeChild(n[e].querySelector('span'));let r=document.createElement('span');r.style.position='absolute',r.style.left='0',r.style.width='100%',r.style.textAlign='right',r.style.color='#000',r.innerHTML=Math.round(parseInt(n[e].innerHTML)*t),n[e].style.position='relative',n[e].style.color='transparent',n[e].appendChild(r)}}))};t.style.textAlign='left',t.style.marginBottom='1rem',t.innerHTML='✔️ Hodnota skillů upravená podle aktuální EC.',e.prepend(t),e.addEventListener('change',(function(e){'checkbox'!=e.target.getAttribute('type')&&'select'!=e.target.getAttribute('type')||setInterval((function(){n()}),500)})),n()}})()">Odkaz</a>
 ### Úprava výpisu přestupů
 Zobrazí u hráče počet dnů, kolik je na Brejku a jméno posledního / současného majitele.
 
