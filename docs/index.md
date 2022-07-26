@@ -1,8 +1,7 @@
-***
-UPDATE 26. 7. 2022: Podle ohlasů od manažerů jsem provedl dvě úpravy:
+**UPDATE 26. 7. 2022:** Podle ohlasů od manažerů jsem provedl dvě úpravy:
 - varianta bez započítávání sehranosti je nyní výchozí. Původní skript počítající se sehraností jsem přesunul dolů k dalším bookmarkletům, skript bez sehranosti je nyní v hlavní části.
 - oba skripty fungují i v repre kádru
-***
+
 ## Co to je
 
 Jedná se o tzv. bookmarklet. Bookmarklet je javascriptový kód, který se uloží jako záložka v prohlížeči. Zatímco standardní záložka obsahuje nějaký odkaz na webovou stránku, záložka s bookmarkletem obsahuje instrukce, které se mají po kliknutí vykonat.
